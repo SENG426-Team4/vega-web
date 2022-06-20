@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 8000
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["/usr/local/bin/npm", "run"]
