@@ -1,16 +1,19 @@
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import React, { useState } from 'react';
 
-const LoginUser = ({onSubmit}) => {
+const LoginUser = (props) => {
 	
 	const [username, setUsername]  = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState();
 
 	const submitForm = (evt) => {
 		evt.preventDefault();
-		onSubmit({
+		props.onSubmit({
 			username,
 			password
+		}).catch(err => {
+			setError(err)
 		})
 	}
 
@@ -30,6 +33,9 @@ const LoginUser = ({onSubmit}) => {
 	        			Submit
 	      			</Button>
     			</Form>
+				{error && (
+					<h6 style={{ color: 'red' }}>Error: {JSON.stringify(error)}</h6>
+				)}
       		</Col>
    	 	</Row>
 		);

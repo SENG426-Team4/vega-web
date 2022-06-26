@@ -13,7 +13,7 @@ const Login = (props) => {
 	const [auth, setAuth] = useState(false);
 	console.log("Userinfo", user);
 	function onSubmit(userInfo){
-		login(userInfo)
+		return login(userInfo)
 			.then(res => {
 				console.log("Response", res);
 				console.log(res.jwt);
