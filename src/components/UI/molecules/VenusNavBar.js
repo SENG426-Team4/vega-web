@@ -6,14 +6,17 @@ import { UserContext } from "../../../auth/UserProvider.js";
 const VenusNavBar = (props) => {
   const { user } = useContext(UserContext);
   var logout;
+  var signup;
   var resources;
   var adminpanel;
 
   if (user.username && user.jwt) {
     console.log(user);
+    signup = null;
     logout = <Nav.Link href="/account">Logout</Nav.Link>;
   } else {
-    logout = <Nav.Link href="/login">Login/SignUp</Nav.Link>;
+    signup = <Nav.Link href="/signup">Signup</Nav.Link>
+    logout = <Nav.Link href="/login">Login</Nav.Link>;
   }
 
   if (
@@ -39,6 +42,7 @@ const VenusNavBar = (props) => {
           <Nav.Link href="#pricing">About us</Nav.Link>
           <Nav.Link href="/contactus">Contact us</Nav.Link>
           <Nav.Item className="float-right">{logout}</Nav.Item>
+          <Nav.Item className="float-right">{signup}</Nav.Item>
           {adminpanel}
         </Nav>
       </Container>

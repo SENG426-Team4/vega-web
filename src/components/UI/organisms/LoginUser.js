@@ -6,11 +6,11 @@ const LoginUser = ({onSubmit}) => {
 	const [username, setUsername]  = useState('');
 	const [password, setPassword] = useState('');
 
-	const submitForm:function = (evt) => {
+	const submitForm = (evt) => {
 		evt.preventDefault();
 		onSubmit({
-			'username' : username,
-			'password' : password
+			username,
+			password
 		})
 	}
 
@@ -26,7 +26,7 @@ const LoginUser = ({onSubmit}) => {
 	        			<Form.Label>PASSWORD</Form.Label>
 	        			<Form.Control type="PASSWORD" onChange={e => setPassword(e.target.value)}/>
 	      			</Form.Group>
-	      			<Button variant="primary" type="submit" onClick={submitForm}>
+	      			<Button variant="primary" type="submit">
 	        			Submit
 	      			</Button>
     			</Form>
