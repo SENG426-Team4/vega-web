@@ -45,7 +45,11 @@ export default function SecretRow({ secret }) {
         }}
         gap={4}
       >
-        <SeeSecret />
+        <SeeSecret
+          smallScreen={smallScreen}
+          secretTitle={secret.name}
+          secretValue={secret.data}
+        />
         <Button>
           <Stack direction="horizontal" gap={2}>
             <MdEdit />

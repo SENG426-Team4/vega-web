@@ -57,6 +57,7 @@ export function VegaVaultPage() {
                 style={{
                   cursor: "default",
                 }}
+                key={secret.id}
               >
                 <SecretRow secret={secret} />
               </ListGroup.Item>
