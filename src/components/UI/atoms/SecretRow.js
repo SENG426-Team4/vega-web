@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Stack, Button } from "react-bootstrap";
 import { MdEdit, MdDelete } from "react-icons/md";
-import { AiFillEye } from "react-icons/ai";
 import { SeeSecret } from "../molecules/SeeSecret";
+import { ModifySecret } from "../molecules/ModifySecret";
 
 export default function SecretRow({ secret }) {
   const [smallScreen, setSmallScreen] = useState();
@@ -45,17 +45,8 @@ export default function SecretRow({ secret }) {
         }}
         gap={4}
       >
-        <SeeSecret
-          smallScreen={smallScreen}
-          secretTitle={secret.name}
-          secretValue={secret.data}
-        />
-        <Button>
-          <Stack direction="horizontal" gap={2}>
-            <MdEdit />
-            {smallScreen ? "" : "Modify"}
-          </Stack>
-        </Button>
+        <SeeSecret smallScreen={smallScreen} secret={secret} />
+        <ModifySecret smallScreen={smallScreen} secret={secret} />
         <Button variant="danger">
           <Stack direction="horizontal" gap={2}>
             <MdDelete />
