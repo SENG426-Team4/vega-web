@@ -25,7 +25,7 @@ const Resources = (props) => {
       setDataLoaded(true);
       setFiles(resp);
     });
-  }, [user]);
+  }, [user, dataLoaded]);
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -33,11 +33,13 @@ const Resources = (props) => {
   };
 
   const handleSubmission = () => {
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    fileUploader(formData, user.jwt).then((res) => {
-      console.log("Response", res);
-    });
+    if (isFilePicked) {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      fileUploader(formData, user.jwt).then((res) => {
+        console.log("Response", res);
+      });
+    }
   };
 
   const fetchFileData = (name) => {
