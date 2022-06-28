@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createSecret,
+  deleteSecret,
   readSecret,
   updateSecret,
 } from "../services/VegaVaultAPI.js";
@@ -12,13 +13,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:userid/read", (req, res) => {
-  console.log("IN GET READ SECRET", req);
+  //console.log("IN GET READ SECRET", req);
   readSecret(
     `${process.env.API_KEY}venus/vault/${req.params.userid}`,
     req.headers
   )
     .then((response) => {
-      console.log("Response", response);
+      //console.log("Response", response);
       res.send(response);
     })
     .catch((error) => {
@@ -28,7 +29,7 @@ router.get("/:userid/read", (req, res) => {
 });
 
 router.post("/:userid/create", (req, res) => {
-  console.log("IN POST CREATE SECRET", req);
+  //console.log("IN POST CREATE SECRET", req);
   createSecret(
     `${process.env.API_KEY}venus/vault/${req.params.userid}/add`,
     req.body,
@@ -43,9 +44,24 @@ router.post("/:userid/create", (req, res) => {
 });
 
 router.put("/:userid/update", (req, res) => {
-  console.log("GETTING TO UPDATE SECRET");
+  //console.log("GETTING TO UPDATE SECRET");
   updateSecret(
     `${process.env.API_KEY}venus/vault/${req.params.userid}/update`,
+    req.body,
+    req.headers
+  )
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
+router.delete("/:userid/delete", (req, res) => {
+  console.log("GETTING TO DELETE", req.params, req.body);
+  deleteSecret(
+    `${process.env.API_KEY}venus/vault/${req.params.userid}/delete`,
     req.body,
     req.headers
   )

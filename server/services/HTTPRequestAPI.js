@@ -7,6 +7,12 @@ export async function doPut(url, data, token) {
   return await handleResponse(response);
 }
 
+export async function doDelete(url, data, token) {
+  var requestOptions = createRequestOptions("DELETE", data, token);
+  const response = await fetch(url, requestOptions);
+  return await handleResponse(response);
+}
+
 export async function doPost(url, data, headers) {
   console.log("IN DO POST HTTP REQUEST", url, data, headers);
   const response = await fetch(
@@ -33,7 +39,7 @@ export async function doPostFile(url, data, headers) {
 }
 
 function createRequestOptionsForFile(method, data, headers) {
-  console.log(headers);
+  //console.log(headers);
   var requestOptions = {
     method: method,
     headers: {
@@ -42,7 +48,7 @@ function createRequestOptionsForFile(method, data, headers) {
     },
     formData: data,
   };
-  console.log(requestOptions);
+  //console.log(requestOptions);
   return requestOptions;
 }
 

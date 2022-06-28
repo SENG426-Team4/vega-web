@@ -1,4 +1,4 @@
-import { doPost, doGet, doPut } from "./HTTPRequestAPI.js";
+import { doPost, doGet, doPut, doDelete } from "./HTTPRequestAPI.js";
 
 export function createSecret(url, data, headers) {
   console.log("Create Secret", url, data, headers);
@@ -17,4 +17,8 @@ export function updateSecret(url, newData, headers) {
   ) {
     return doPut(url, newData, headers["authorization"]);
   }
+}
+
+export function deleteSecret(url, data, headers) {
+  return doDelete(url, data, headers["authorization"]);
 }
