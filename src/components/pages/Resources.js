@@ -7,7 +7,7 @@ import {
   fetchData,
 } from "../../service/FileUpload/FileUploader.js";
 import { UserContext } from "../../auth/UserProvider.js";
-import { SecretGeneration } from "./resources/SecretGeneration.js";
+import { SecretGeneration } from "../UI/molecules/SecretGeneration.js";
 
 const Resources = (props) => {
   const [selectedFile, setSelectedFile] = useState();
