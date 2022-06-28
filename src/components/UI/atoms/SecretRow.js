@@ -3,6 +3,7 @@ import { Stack, Button } from "react-bootstrap";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { SeeSecret } from "../molecules/SeeSecret";
 import { ModifySecret } from "../molecules/ModifySecret";
+import { DeleteSecret } from "../molecules/DeleteSecret";
 
 export default function SecretRow({ secret, setUpdateSecrets }) {
   const [smallScreen, setSmallScreen] = useState(
@@ -53,12 +54,11 @@ export default function SecretRow({ secret, setUpdateSecrets }) {
           secret={secret}
           setUpdateSecrets={setUpdateSecrets}
         />
-        <Button variant="danger">
-          <Stack direction="horizontal" gap={2}>
-            <MdDelete />
-            {smallScreen ? "" : "Delete"}
-          </Stack>
-        </Button>
+        <DeleteSecret
+          secret={secret}
+          smallScreen={smallScreen}
+          setUpdateSecrets={setUpdateSecrets}
+        />
       </Stack>
     </Stack>
   );
