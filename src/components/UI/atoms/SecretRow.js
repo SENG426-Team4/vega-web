@@ -4,8 +4,10 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { SeeSecret } from "../molecules/SeeSecret";
 import { ModifySecret } from "../molecules/ModifySecret";
 
-export default function SecretRow({ secret }) {
-  const [smallScreen, setSmallScreen] = useState();
+export default function SecretRow({ secret, setUpdateSecrets }) {
+  const [smallScreen, setSmallScreen] = useState(
+    window.matchMedia("(max-width: 768px)").matches
+  );
   useEffect(() => {
     window.matchMedia("(max-width: 768px)").addEventListener("change", (e) => {
       console.log("Screen updated. Is small?", e.matches, e);
@@ -43,10 +45,14 @@ export default function SecretRow({ secret }) {
         style={{
           alignItems: "center",
         }}
-        gap={4}
+        gap={smallScreen ? 1 : 4}
       >
         <SeeSecret smallScreen={smallScreen} secret={secret} />
-        <ModifySecret smallScreen={smallScreen} secret={secret} />
+        <ModifySecret
+          smallScreen={smallScreen}
+          secret={secret}
+          setUpdateSecrets={setUpdateSecrets}
+        />
         <Button variant="danger">
           <Stack direction="horizontal" gap={2}>
             <MdDelete />

@@ -4,7 +4,7 @@ import { secretCreator } from "../../../service/VegaVault/VegaVaultManager";
 import { UserContext } from "../../../auth/UserProvider";
 import { NewSecretModal } from "./NewSecretModal";
 
-export function CreateNewSecret() {
+export function CreateNewSecret({ setUpdateSecrets }) {
   const [secretName, setSecretName] = useState("");
   const [secretValue, setSecretValue] = useState("");
 
@@ -27,6 +27,7 @@ export function CreateNewSecret() {
         setSecretName("");
         setSecretValue("");
         console.log(res);
+        setUpdateSecrets(true);
       });
     } else {
       alert("Enter both a secret name and its value!");

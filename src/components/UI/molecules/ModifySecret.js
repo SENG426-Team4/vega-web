@@ -11,7 +11,7 @@ import { useContext, useState } from "react";
 import { secretUpdate } from "../../../service/VegaVault/VegaVaultManager";
 import { UserContext } from "../../../auth/UserProvider";
 
-export function ModifySecret({ smallScreen, secret }) {
+export function ModifySecret({ smallScreen, secret, setUpdateSecrets }) {
   const { user } = useContext(UserContext);
   const [show, setShow] = useState(false);
 
@@ -43,6 +43,7 @@ export function ModifySecret({ smallScreen, secret }) {
         console.log(res);
         handleClose(false);
         setShowToast(true);
+        setUpdateSecrets(true);
       });
     } else {
       alert("Enter both a secret name and its value!");

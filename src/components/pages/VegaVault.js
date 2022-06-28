@@ -16,15 +16,19 @@ export function VegaVaultPage() {
   const { user } = useContext(UserContext);
 
   const [secrets, setSecrets] = useState([]);
+  const [updateSecrets, setUpdateSecrets] = useState(true);
 
   useEffect(() => {
-    secretReader(user.username.replace(/@venus.com/g, ""), user.jwt).then(
-      (res) => {
-        setSecrets(res);
-        console.log(res);
-      }
-    );
-  });
+    if (updateSecrets) {
+      secretReader(user.username.replace(/@venus.com/g, ""), user.jwt).then(
+        (res) => {
+          setSecrets(res);
+          setUpdateSecrets(false);
+          console.log(res);
+        }
+      );
+    }
+  }, [user, updateSecrets]);
 
   return (
     <SimplePageLayout>
@@ -35,7 +39,7 @@ export function VegaVaultPage() {
       >
         <Stack direction="horizontal" gap={5}>
           <h1>Vega Vault</h1>
-          <CreateNewSecret />
+          <CreateNewSecret setUpdateSecrets={setUpdateSecrets} />
         </Stack>
         <hr />
         {secrets && secrets.length > 0 ? (
@@ -48,7 +52,10 @@ export function VegaVaultPage() {
                 }}
                 key={secret.id}
               >
-                <SecretRow secret={secret} />
+                <SecretRow
+                  setUpdateSecrets={setUpdateSecrets}
+                  secret={secret}
+                />
               </ListGroup.Item>
             ))}
           </ListGroup>
