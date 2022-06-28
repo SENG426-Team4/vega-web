@@ -16,7 +16,7 @@ export function NewSecretModal({
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3">
             <Form.Label>Secret Title</Form.Label>
             <Form.Control
               onChange={(e) => setSecretName(e.target.value)}
@@ -26,7 +26,7 @@ export function NewSecretModal({
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3">
             <Form.Label>Secret</Form.Label>
             <Form.Control
               onChange={(e) => setSecretValue(e.target.value)}

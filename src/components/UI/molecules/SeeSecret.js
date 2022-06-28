@@ -3,7 +3,7 @@ import { AiFillEye } from "react-icons/ai";
 import { useState } from "react";
 import { MdContentCopy } from "react-icons/md";
 
-export function SeeSecret({ smallScreen, secretTitle, secretValue }) {
+export function SeeSecret({ smallScreen, secret }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -39,7 +39,7 @@ export function SeeSecret({ smallScreen, secretTitle, secretValue }) {
                 borderRadius: 5,
               }}
             >
-              {secretTitle}
+              {secret.name}
             </h4>
             <h5
               style={{
@@ -58,14 +58,14 @@ export function SeeSecret({ smallScreen, secretTitle, secretValue }) {
                 justifyContent: "space-between",
               }}
             >
-              {secretValue}
+              {secret.data}
               <MdContentCopy
                 style={{
                   cursor: "pointer",
                 }}
                 onClick={() => {
                   handleClose();
-                  navigator.clipboard.writeText(secretValue);
+                  navigator.clipboard.writeText(secret.data);
                   setShowToast(true);
                 }}
               />
@@ -93,7 +93,7 @@ export function SeeSecret({ smallScreen, secretTitle, secretValue }) {
             <strong className="me-auto">Copied!</strong>
           </Toast.Header>
           <Toast.Body>
-            {secretTitle} has been copied to your clipboard!
+            {secret.name} has been copied to your clipboard!
           </Toast.Body>
         </Toast>
       </ToastContainer>
