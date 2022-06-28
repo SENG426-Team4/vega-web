@@ -32,6 +32,18 @@ export async function doGet(url, token) {
   return await handleResponse(response);
 }
 
+export async function doPut(url, data, token) {
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: "Bearer " + token,
+    },
+    body: JSON.stringify(data),
+  });
+  return await handleResponse(response);
+}
+
 export async function doPost(url, data, token) {
   console.debug("Request data:", data, url, token);
   const response = await fetch(url, {

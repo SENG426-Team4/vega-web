@@ -1,6 +1,12 @@
 import fetch from "node-fetch";
 import Promise from "promise";
 
+export async function doPut(url, data, token) {
+  var requestOptions = createRequestOptions("PUT", data, token);
+  const response = await fetch(url, requestOptions);
+  return await handleResponse(response);
+}
+
 export async function doPost(url, data, headers) {
   console.log("IN DO POST HTTP REQUEST", url, data, headers);
   const response = await fetch(
