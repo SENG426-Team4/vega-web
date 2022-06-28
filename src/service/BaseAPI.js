@@ -1,6 +1,6 @@
-import {UserProvider} from '../auth/UserProvider.js';
+import { UserProvider } from "../auth/UserProvider.js";
 
-function getUserToken(){
+function getUserToken() {
   return UserProvider;
 }
 
@@ -12,32 +12,33 @@ export async function handleResponse(response, isBlob = false) {
     result = handleResult(await response.text());
   }
   if (response.ok) {
+    console.log("RESPONSE OK", result);
     return result;
   }
   // handle error
   return Promise.reject({
     code: response.status,
-    message: result && result.message ? result.message : response.statusText
+    message: result && result.message ? result.message : response.statusText,
   });
 }
 
 export async function doGet(url, token) {
   const response = await fetch(url, {
-    method: 'GET',
-    headers:{
-      'Authorization':'Bearer '+token
-    }
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
   });
   return await handleResponse(response);
 }
 
-
-export async function doPost(url, data) {
-  console.debug('Request data:', data);
+export async function doPost(url, data, token) {
+  console.debug("Request data:", data, url, token);
   const response = await fetch(url, {
-    method: 'POST',
-    headers : {
-      "Content-Type": "application/json"
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: "Bearer " + token,
     },
     body: JSON.stringify(data),
   });
@@ -46,13 +47,13 @@ export async function doPost(url, data) {
 
 export async function doPostFile(url, data, token) {
   console.log(getUserToken());
-  console.debug('Request data:', data);
+  console.debug("Request data:", data);
   const response = await fetch(url, {
-    method: 'POST',
-    headers:{
-      'Authorization':'Bearer '+token
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
     },
-    body: data
+    body: data,
   });
 
   return await handleResponse(response);
