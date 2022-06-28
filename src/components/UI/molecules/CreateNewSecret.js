@@ -4,12 +4,10 @@ import { secretCreator } from "../../../service/VegaVault/VegaVaultManager";
 import { UserContext } from "../../../auth/UserProvider";
 import { NewSecretModal } from "./NewSecretModal";
 
-export function CreateNewSecret({
-  secretName,
-  setSecretName,
-  secretValue,
-  setSecretValue,
-}) {
+export function CreateNewSecret() {
+  const [secretName, setSecretName] = useState("");
+  const [secretValue, setSecretValue] = useState("");
+
   const { user } = useContext(UserContext);
   const [show, setShow] = useState(false);
 

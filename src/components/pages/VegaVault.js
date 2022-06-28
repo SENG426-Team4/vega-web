@@ -13,23 +13,18 @@ import SecretRow from "../UI/atoms/SecretRow";
 import { CreateNewSecret } from "../UI/molecules/CreateNewSecret";
 
 export function VegaVaultPage() {
-  const [secretName, setSecretName] = useState("");
-  const [secretValue, setSecretValue] = useState("");
-
   const { user } = useContext(UserContext);
 
   const [secrets, setSecrets] = useState([]);
 
   useEffect(() => {
-    if (secretName === "" && secretValue === "") {
-      secretReader(user.username.replace(/@venus.com/g, ""), user.jwt).then(
-        (res) => {
-          setSecrets(res);
-          console.log(res);
-        }
-      );
-    }
-  }, [user, secretName, secretValue]);
+    secretReader(user.username.replace(/@venus.com/g, ""), user.jwt).then(
+      (res) => {
+        setSecrets(res);
+        console.log(res);
+      }
+    );
+  });
 
   return (
     <SimplePageLayout>
@@ -40,14 +35,8 @@ export function VegaVaultPage() {
       >
         <Stack direction="horizontal" gap={5}>
           <h1>Vega Vault</h1>
-          <CreateNewSecret
-            secretName={secretName}
-            setSecretName={setSecretName}
-            secretValue={secretValue}
-            setSecretValue={setSecretValue}
-          />
+          <CreateNewSecret />
         </Stack>
-
         <hr />
         {secrets && secrets.length > 0 ? (
           <ListGroup>
