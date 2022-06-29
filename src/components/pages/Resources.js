@@ -80,7 +80,6 @@ const Resources = (props) => {
       <hr
         style={{
           marginTop: "20px",
-          maxWidth: "900px",
         }}
       />
       <SecretGeneration user={user} />
