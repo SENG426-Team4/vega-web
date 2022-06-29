@@ -10,7 +10,7 @@ export function NewSecretModal({
   secretValue,
 }) {
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Create New Secret</Modal.Title>
       </Modal.Header>

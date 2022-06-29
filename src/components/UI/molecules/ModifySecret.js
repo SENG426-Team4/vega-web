@@ -37,6 +37,7 @@ export function ModifySecret({ smallScreen, secret, setUpdateSecrets }) {
           newName: newSecretName,
           newData: newSecretValue,
           username: user.username.replace(/@venus.com/g, ""),
+          id: secret.id,
         },
         user.jwt
       ).then((res) => {
@@ -97,8 +98,10 @@ export function ModifySecret({ smallScreen, secret, setUpdateSecrets }) {
       <ToastContainer
         style={{
           zIndex: 10,
+          position: "fixed",
+          left: 10,
+          bottom: 40,
         }}
-        position="bottom-center"
       >
         <Toast
           bg="dark"

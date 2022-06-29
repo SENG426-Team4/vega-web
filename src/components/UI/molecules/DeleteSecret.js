@@ -1,11 +1,4 @@
-import {
-  Button,
-  Stack,
-  Modal,
-  Form,
-  ToastContainer,
-  Toast,
-} from "react-bootstrap";
+import { Button, Stack, Modal } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import { useContext, useState } from "react";
 import { secretDelete } from "../../../service/VegaVault/VegaVaultManager";
@@ -14,7 +7,6 @@ import { UserContext } from "../../../auth/UserProvider";
 export function DeleteSecret({ smallScreen, secret, setUpdateSecrets }) {
   const { user } = useContext(UserContext);
   const [show, setShow] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,7 +14,6 @@ export function DeleteSecret({ smallScreen, secret, setUpdateSecrets }) {
   const handleDelete = () => {
     secretDelete(secret, user.jwt).then((res) => {
       handleClose();
-      setShowToast(true);
       setUpdateSecrets(true);
     });
   };
@@ -53,28 +44,6 @@ export function DeleteSecret({ smallScreen, secret, setUpdateSecrets }) {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer
-        style={{
-          zIndex: 10,
-        }}
-        position="bottom-center"
-      >
-        <Toast
-          bg="dark"
-          delay={3000}
-          onClose={() => setShowToast(false)}
-          autohide
-          show={showToast}
-          style={{
-            color: "white",
-          }}
-        >
-          <Toast.Header>
-            <strong className="me-auto">Deleted!</strong>
-          </Toast.Header>
-          <Toast.Body>{secret.name} has been deleted!</Toast.Body>
-        </Toast>
-      </ToastContainer>
     </>
   );
 }
