@@ -4,7 +4,7 @@ import { MdContentCopy } from "react-icons/md";
 
 var generator = require("generate-password");
 
-const generateSecret = (length) => {
+export const generateSecret = (length) => {
   try {
     return generator.generate({
       length: length,
