@@ -5,7 +5,7 @@ import { Container, Row } from "react-bootstrap";
 import ListRoundImages from "../UI/molecules/ListRoundImages.js";
 const SimplePageLayout = ({ children }) => {
   return (
-    <Container className="d-flex flex-column min-vh-100 min-vw-100 justify-content-between">
+      <Container className="d-flex flex-column min-vh-100 justify-content-between">
       <Row>
         <Header />
         <Content>{children}</Content>
