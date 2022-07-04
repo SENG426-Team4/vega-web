@@ -13,19 +13,34 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:userid/read", (req, res) => {
-  //console.log("IN GET READ SECRET", req);
-  readSecret(
-    `${process.env.API_KEY}venus/vault/${req.params.userid}`,
-    req.headers
-  )
-    .then((response) => {
-      //console.log("Response", response);
-      res.send(response);
-    })
-    .catch((error) => {
-      console.log("ERROR:", error);
-      res.send(error);
-    });
+  console.log("IN GET READ SECRET", req);
+  if (req.query.from && req.query.to) {
+    console.log("Got dates!!!");
+    readSecret(
+      `${process.env.API_KEY}venus/vault/${req.params.userid}/from=${req.query.from}&to=${req.query.to}`,
+      req.headers
+    )
+      .then((response) => {
+        res.send(response);
+      })
+      .catch((error) => {
+        console.log("Error in getting filtered secrets", error);
+        res.send(error);
+      });
+  } else {
+    readSecret(
+      `${process.env.API_KEY}venus/vault/${req.params.userid}`,
+      req.headers
+    )
+      .then((response) => {
+        //console.log("Response", response);
+        res.send(response);
+      })
+      .catch((error) => {
+        console.log("ERROR:", error);
+        res.send(error);
+      });
+  }
 });
 
 router.post("/:userid/create", (req, res) => {
