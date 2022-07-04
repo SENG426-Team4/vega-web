@@ -6,6 +6,7 @@ function authModule(req, res) {
   if (req.method == "POST") {
     const userInfo = req.body;
     console.log(userInfo);
+
     doPost(`${process.env.API_KEY}venus/authenticate`, userInfo)
       .then((response) => {
         console.log("Response", response);

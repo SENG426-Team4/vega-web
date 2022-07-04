@@ -1,4 +1,4 @@
-import {doPost} from '../BaseAPI.js';
+import { doPost } from "../BaseAPI.js";
 
 export function login(userInfo){
 	console.log("In Auth", userInfo);
