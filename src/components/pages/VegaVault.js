@@ -71,7 +71,14 @@ export function VegaVaultPage() {
           <h1>Vega Vault</h1>
           <CreateNewSecret setUpdateSecrets={setUpdateSecrets} />
         </Stack>
-        <Stack direction="horizontal" gap={3}>
+        <hr />
+        <Stack
+          direction="horizontal"
+          gap={3}
+          style={{
+            marginBottom: 15,
+          }}
+        >
           <h4>Filter from</h4>
           <input
             type="date"
@@ -88,8 +95,6 @@ export function VegaVaultPage() {
             Reset Filter
           </Button>
         </Stack>
-
-        <hr />
         {secrets && secrets.length > 0 ? (
           <ListGroup>
             {secrets.map((secret) => (
