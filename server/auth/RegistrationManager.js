@@ -1,13 +1,12 @@
 import bodyParser from "body-parser";
 import express from "express";
-import { doPost } from "../services/HTTPRequestAPI";
+import { doPost } from "../services/HTTPRequestAPI.js";
 
 function authModule(req, res) {
   if (req.method == "POST") {
     const userInfo = req.body;
     console.log(userInfo);
-
-    doPost(`${process.env.API_KEY}venus/authenticate`, userInfo)
+    doPost(`${process.env.API_KEY}venus/register`, userInfo)
       .then((response) => {
         console.log("Response", response);
         res.send(response);

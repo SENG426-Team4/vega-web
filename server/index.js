@@ -1,10 +1,12 @@
-import auth from "./auth/AuthenticationManager.js";
-import fileUploader from "./controller/FileUploadController.js";
-import adminPanel from "./controller/AdminPanelController.js";
-import express from "express";
-import { config } from "dotenv";
-import cors from "cors";
-import bodyParser from "body-parser";
+
+import auth from './auth/AuthenticationManager.js';
+import register from './auth/RegistrationManager.js';
+import fileUploader from './controller/FileUploadController.js';
+import adminPanel from './controller/AdminPanelController.js';
+import express from 'express';
+import { config } from 'dotenv';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = 8000;
@@ -29,6 +31,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use("/api/signup", register);
 app.use("/api/login", auth);
 app.use("/api/venus", fileUploader);
 app.use("/api/venus/admin", adminPanel);

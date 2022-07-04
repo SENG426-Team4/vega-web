@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import UserRegistrationPageLayout from '../templates/UserRegistrationPageLayout.js';
 import LoginUser from '../UI/organisms/LoginUser.js';
 import {login} from '../../service/auth/AuthenticationManager.js';
@@ -13,7 +13,7 @@ const Login = (props) => {
 	const [auth, setAuth] = useState(false);
 	console.log("Userinfo", user);
 	function onSubmit(userInfo){
-		login(userInfo)
+		return login(userInfo)
 			.then(res => {
 				console.log("Response", res);
 				console.log(res.jwt);

@@ -22,23 +22,27 @@ import AboutUs from './components/pages/AboutUs.js';
 import UserAccount from './components/pages/UserAccount.js';
 
 function App() {
-    const { user, setUserInfo, logout } = useContext(UserContext);
-    return (
-        <UserProvider value={user, setUserInfo, logout}>
-            <Switch>
-                <Route path="/" component={HomePageLayout} exact />
-                <Route path="/contactus" component={ContactUs} exact />
-                <Route path="/leadership" component={Leadership} exact />
-                <Route path="/aboutus" component={AboutUs} exact />
-                <Route path="/news" component={NewsAndEvents} />
-                <Route path="/platform" component={Platform} />
-                <Route path="/login" component={Login} />
-                <Route path="/account" component={UserAccount} />
-                <Route path="/resources" component={Resources} />
-                <Route path="/adminpanel" component={AdminPanel} />
-            </Switch>
-        </UserProvider>
-    );
+
+  
+
+  const {user, setUserInfo, logout} = useContext(UserContext);
+
+  return (
+   <UserProvider value ={user, setUserInfo, logout}> 
+        <Switch>
+        	<Route path="/" component={HomePageLayout} exact />
+        	<Route path="/contactus" component={UserRegistration} exact />
+        	<Route path="/leadership" component={Leadership} exact />
+        	<Route path="/news" component={NewsAndEvents} />
+        	<Route path="/platform" component={Platform} />
+        	<Route path="/login" component={Login} />
+          <Route path="/signup" component={UserRegistration} />
+          <Route path="/account" component={UserAccount} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/adminpanel" component={AdminPanel} />
+        </Switch>
+    </UserProvider>
+  );
 }
 
 export default App;
