@@ -43,3 +43,12 @@ export function secretDelete(secret, token) {
     token
   );
 }
+
+export function secretShare(secretShareInfo, token) {
+  console.log("Secret Share", secretShareInfo);
+  return doPut(
+    `http://localhost:8000/api/venus/vault/${secretShareInfo.username}/share`,
+    secretShareInfo,
+    token
+  );
+}

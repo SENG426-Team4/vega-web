@@ -3,6 +3,7 @@ import {
   createSecret,
   deleteSecret,
   readSecret,
+  shareSecret,
   updateSecret,
 } from "../services/VegaVaultAPI.js";
 
@@ -77,6 +78,21 @@ router.delete("/:userid/delete", (req, res) => {
   console.log("GETTING TO DELETE", req.params, req.body);
   deleteSecret(
     `${process.env.API_KEY}venus/vault/${req.params.userid}/delete`,
+    req.body,
+    req.headers
+  )
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
+router.put("/:userid/share", (req, res) => {
+  console.log("Got to API sharing", req.params, req.body);
+  shareSecret(
+    `${process.env.API_KEY}venus/vault/${req.params.userid}/share`,
     req.body,
     req.headers
   )

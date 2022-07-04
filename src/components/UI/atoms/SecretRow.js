@@ -4,6 +4,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { SeeSecret } from "../molecules/SeeSecret";
 import { ModifySecret } from "../molecules/ModifySecret";
 import { DeleteSecret } from "../molecules/DeleteSecret";
+import { ShareSecret } from "../molecules/ShareSecret";
 
 export default function SecretRow({ secret, setUpdateSecrets }) {
   const [smallScreen, setSmallScreen] = useState(
@@ -40,6 +41,7 @@ export default function SecretRow({ secret, setUpdateSecrets }) {
           timeZoneName: "short",
         })}
       </h6>
+      {secret.parentId ? <h5>Shared with you by {secret.owner}</h5> : null}
       <Stack
         className="ms-auto"
         direction="horizontal"
@@ -49,16 +51,25 @@ export default function SecretRow({ secret, setUpdateSecrets }) {
         gap={smallScreen ? 1 : 4}
       >
         <SeeSecret smallScreen={smallScreen} secret={secret} />
-        <ModifySecret
-          smallScreen={smallScreen}
-          secret={secret}
-          setUpdateSecrets={setUpdateSecrets}
-        />
-        <DeleteSecret
-          secret={secret}
-          smallScreen={smallScreen}
-          setUpdateSecrets={setUpdateSecrets}
-        />
+        {!secret.parentId ? (
+          <>
+            <ModifySecret
+              smallScreen={smallScreen}
+              secret={secret}
+              setUpdateSecrets={setUpdateSecrets}
+            />
+            <DeleteSecret
+              secret={secret}
+              smallScreen={smallScreen}
+              setUpdateSecrets={setUpdateSecrets}
+            />
+            <ShareSecret
+              secret={secret}
+              smallScreen={smallScreen}
+              setUpdateSecrets={setUpdateSecrets}
+            />
+          </>
+        ) : null}
       </Stack>
     </Stack>
   );

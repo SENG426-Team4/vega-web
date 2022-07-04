@@ -21,3 +21,7 @@ export function updateSecret(url, newData, headers) {
 export function deleteSecret(url, data, headers) {
   return doDelete(url, data, headers["authorization"]);
 }
+
+export function shareSecret(url, data, headers) {
+  return doPut(url, data, headers);
+}

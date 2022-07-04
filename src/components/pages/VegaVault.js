@@ -53,9 +53,11 @@ export function VegaVaultPage() {
   }, [fromDate, toDate]);
 
   const handleResetDates = () => {
-    setFromDate("");
-    setToDate("");
-    setUpdateSecrets(true);
+    if (fromDate || toDate) {
+      setFromDate("");
+      setToDate("");
+      setUpdateSecrets(true);
+    }
   };
 
   return (
