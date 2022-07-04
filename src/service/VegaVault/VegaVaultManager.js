@@ -19,6 +19,14 @@ export function secretReader(userId, token) {
   return doGet(`http://localhost:8000/api/venus/vault/${userId}/read`, token);
 }
 
+export function secretReaderFiltered(userId, fromDate, toDate, token) {
+  console.log("Secret Reader Filtered", fromDate, toDate);
+  return doGet(
+    `http://localhost:8000/api/venus/vault/${userId}/read?from=${fromDate}&to=${toDate}`,
+    token
+  );
+}
+
 export function secretUpdate(newSecretInfo, token) {
   return doPut(
     `http://localhost:8000/api/venus/vault/${newSecretInfo.username}/update`,
@@ -32,6 +40,15 @@ export function secretDelete(secret, token) {
   return doDelete(
     `http://localhost:8000/api/venus/vault/${secret.username}/delete`,
     secret,
+    token
+  );
+}
+
+export function secretShare(secretShareInfo, token) {
+  console.log("Secret Share", secretShareInfo);
+  return doPut(
+    `http://localhost:8000/api/venus/vault/${secretShareInfo.username}/share`,
+    secretShareInfo,
     token
   );
 }

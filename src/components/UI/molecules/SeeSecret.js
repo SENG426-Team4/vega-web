@@ -24,7 +24,7 @@ export function SeeSecret({ smallScreen, secret }) {
           <Modal.Title>View Secret</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Stack>
+          <Stack gap={1}>
             <h5
               style={{
                 opacity: 0.6,
@@ -70,6 +70,11 @@ export function SeeSecret({ smallScreen, secret }) {
                 }}
               />
             </h4>
+            {secret.parentId ? (
+              <>
+                <h5>Shared with you by {secret.owner}</h5>
+              </>
+            ) : null}
           </Stack>
         </Modal.Body>
       </Modal>
