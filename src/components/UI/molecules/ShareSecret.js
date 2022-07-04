@@ -1,14 +1,9 @@
 import { Button, Stack, Modal, Form } from "react-bootstrap";
 import { MdShare } from "react-icons/md";
-import { useContext, useState } from "react";
-import {
-  secretDelete,
-  secretShare,
-} from "../../../service/VegaVault/VegaVaultManager";
-import { UserContext } from "../../../auth/UserProvider";
+import { useState } from "react";
+import { secretShare } from "../../../service/VegaVault/VegaVaultManager";
 
 export function ShareSecret({ smallScreen, secret, setUpdateSecrets }) {
-  const { user } = useContext(UserContext);
   const [show, setShow] = useState(false);
   const [shareUsername, setShareUsername] = useState("");
 

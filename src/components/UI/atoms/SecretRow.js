@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Stack, Button } from "react-bootstrap";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { Stack } from "react-bootstrap";
 import { SeeSecret } from "../molecules/SeeSecret";
 import { ModifySecret } from "../molecules/ModifySecret";
 import { DeleteSecret } from "../molecules/DeleteSecret";

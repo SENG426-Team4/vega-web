@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { UserContext } from "../../../auth/UserProvider.js";
 
@@ -23,7 +22,7 @@ const VenusNavBar = (props) => {
     resources = <Nav.Link href="/resources">Resources</Nav.Link>;
   }
 
-  if (user.role == "ROLE_ADMIN") {
+  if (user.role === "ROLE_ADMIN") {
     adminpanel = <Nav.Link href="/adminpanel">Admin</Nav.Link>;
   }
 
