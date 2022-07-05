@@ -17,7 +17,7 @@ import { UserProvider } from "./auth/UserProvider.js";
 import ContactUsPageLayout from "./components/templates/ContactUsPageLayout.js";
 import ContactUs from "./components/pages/ContactUs.js";
 import { UserContext } from "./auth/UserProvider.js";
-
+import AboutUs from './components/pages/AboutUs.js';
 import UserAccount from "./components/pages/UserAccount.js";
 import { VegaVaultPage } from "./components/pages/VegaVault";
 
@@ -32,6 +32,7 @@ function App() {
         <Route path="/news" component={NewsAndEvents} exact />
         <Route path="/platform" component={Platform} exact />
         <Route path="/login" component={Login} exact />
+        <Route path="/aboutus" component={AboutUs} exact />
         <Route path="/account" component={UserAccount} exact />
         <Route path="/resources" component={Resources} exact />
         <Route path="/adminpanel" component={AdminPanel} exact />
