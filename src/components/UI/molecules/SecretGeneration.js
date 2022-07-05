@@ -92,17 +92,20 @@ export function SecretGeneration({ user }) {
       {generateSecretHTML}
       <ToastContainer
         style={{
-          zIndex: 9999,
+          zIndex: 1,
           marginBottom: "30px",
         }}
         position="bottom-center"
       >
         <Toast
-          bg="info"
+          bg="dark"
           delay={3000}
           onClose={() => setShowToast(false)}
           autohide
           show={showToast}
+          style={{
+            color: "white",
+          }}
         >
           <Toast.Header>
             <strong className="me-auto">Copied!</strong>

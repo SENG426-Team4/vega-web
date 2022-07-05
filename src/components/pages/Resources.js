@@ -7,7 +7,7 @@ import {
   fetchData,
 } from "../../service/FileUpload/FileUploader.js";
 import { UserContext } from "../../auth/UserProvider.js";
-import { SecretGeneration } from "./resources/SecretGeneration.js";
+import { SecretGeneration } from "../UI/molecules/SecretGeneration.js";
 
 const Resources = (props) => {
   const [selectedFile, setSelectedFile] = useState();
@@ -25,7 +25,7 @@ const Resources = (props) => {
       setDataLoaded(true);
       setFiles(resp);
     });
-  }, [user]);
+  }, [user, dataLoaded]);
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -33,11 +33,13 @@ const Resources = (props) => {
   };
 
   const handleSubmission = () => {
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    fileUploader(formData, user.jwt).then((res) => {
-      console.log("Response", res);
-    });
+    if (isFilePicked) {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      fileUploader(formData, user.jwt).then((res) => {
+        console.log("Response", res);
+      });
+    }
   };
 
   const fetchFileData = (name) => {
@@ -78,7 +80,6 @@ const Resources = (props) => {
       <hr
         style={{
           marginTop: "20px",
-          maxWidth: "900px",
         }}
       />
       <SecretGeneration user={user} />

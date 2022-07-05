@@ -5,10 +5,8 @@ import { UserContext } from "../../../auth/UserProvider.js";
 
 
 const VenusNavBar = (props) => {
-    const { user } = useContext(UserContext);
-    var logout;
-    var resources;
-    var adminpanel;
+  const { user } = useContext(UserContext);
+  var logout, resources, adminpanel, vegavault;
 
     if (user.username && user.jwt) {
         console.log(user);
@@ -17,13 +15,14 @@ const VenusNavBar = (props) => {
         logout = <Nav.Link as={NavLink} to="/login">Login/SignUp</Nav.Link>;
     }
 
-    if (
-        user.role === "ROLE_STAFF" ||
-        user.role === "ROLE_ADMIN" ||
-        user.role === "ROLE_USER"
-    ) {
-        resources = <Nav.Link as={NavLink} to="/resources">Resources</Nav.Link>;
-    }
+  if (
+    user.role === "ROLE_STAFF" ||
+    user.role === "ROLE_ADMIN" ||
+    user.role === "ROLE_USER"
+  ) {
+    vegavault = <Nav.Link as={NavLink} to="/vegavault">Vega Vault</Nav.Link>;
+    resources = <Nav.Link as={NavLink} to="/resources">Resources</Nav.Link>;
+  }
 
     if (user.role == "ROLE_ADMIN") {
         adminpanel = <Nav.Link as={NavLink} to="/adminpanel">Admin</Nav.Link>;
@@ -37,6 +36,7 @@ const VenusNavBar = (props) => {
                     <Nav.Link as={NavLink} to="/news">News & Events</Nav.Link>
                     <Nav.Link as={NavLink} to="/leadership">Leadership</Nav.Link>
                     {resources}
+                    {vegavault}
                     <Nav.Link as={NavLink} to="/aboutus">About us</Nav.Link>
                     <Nav.Link as={NavLink} to="/contactus">Contact us</Nav.Link>
                     {logout}

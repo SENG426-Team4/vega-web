@@ -18,10 +18,15 @@ export function secretCreator(secretInfo, token) {
 
 export function secretReader(userId, token) {
   console.log("fetchFiles", token);
-  return doGet(
-    `${
+  return doGet(`${
       process.env.REACT_APP_API_KEY || "http://localhost:8000/"
-    }api/venus/vault/${userId}/read`,
+    }api/venus/vault/${userId}/read`, token);
+}
+
+export function secretReaderFiltered(userId, fromDate, toDate, token) {
+  console.log("Secret Reader Filtered", fromDate, toDate);
+  return doGet(
+    `${process.env.REACT_APP_API_KEY || "http://localhost:8000/"}api/venus/vault/${userId}/read?from=${fromDate}&to=${toDate}`,
     token
   );
 }
@@ -43,6 +48,15 @@ export function secretDelete(secret, token) {
       process.env.REACT_APP_API_KEY || "http://localhost:8000/"
     }api/venus/vault/${secret.username}/delete`,
     secret,
+    token
+  );
+}
+
+export function secretShare(secretShareInfo, token) {
+  console.log("Secret Share", secretShareInfo);
+  return doPut(
+    `${process.env.REACT_APP_API_KEY || "http://localhost:8000/"}api/venus/vault/${secretShareInfo.username}/share`,
+    secretShareInfo,
     token
   );
 }
