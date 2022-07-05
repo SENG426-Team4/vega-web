@@ -13,7 +13,8 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '72c227b9-4939-4396-bd6f-6bf9015362ca'
-  imageRepository: 'sengteamvegaweb1'
+  imageRepository: 'sengteamvegaweb-frontend'
+  imageRepository2: 'sengteamvegaweb-server'
   containerRegistry: 'vegawebteam4.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   dockerfilePath2: '$(Build.SourcesDirectory)/server/Dockerfile'
@@ -40,29 +41,17 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+          latest
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
+        repository: $(imageRepository2)
         dockerfile: $(dockerfilePath2)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - task: DockerCompose@0
-      inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Azure for Students (eddad6ab-c78b-4843-ab26-400912a94327)'
-        azureContainerRegistry: '{"loginServer":"vegawebteam4.azurecr.io", "id" : "/subscriptions/eddad6ab-c78b-4843-ab26-400912a94327/resourceGroups/SENG426/providers/Microsoft.ContainerRegistry/registries/vegawebteam4"}'
-        dockerComposeFile: '**/docker-compose.yml'
-        action: 'Build services'
-    - task: DockerCompose@0
-      inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Azure for Students (eddad6ab-c78b-4843-ab26-400912a94327)'
-        azureContainerRegistry: '{"loginServer":"vegawebteam4.azurecr.io", "id" : "/subscriptions/eddad6ab-c78b-4843-ab26-400912a94327/resourceGroups/SENG426/providers/Microsoft.ContainerRegistry/registries/vegawebteam4"}'
-        dockerComposeFile: '**/docker-compose.yml'
-        action: 'Push services'
+          latest
     - task: Npm@1
       inputs:
         command: 'install'
