@@ -16,7 +16,7 @@ const LoginUser = ({onSubmit}) => {
 
 	return (
 		<Row>
-      		<Col className="mx-auto" xs={6}>
+			<Col className="ml-auto" xs={6} sm={7} md={8} lg={8}>
         		<Form onSubmit={submitForm}>
 	      			<Form.Group className="mb-3">
 	        			<Form.Label>USERNAME</Form.Label>
