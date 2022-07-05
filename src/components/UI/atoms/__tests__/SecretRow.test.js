@@ -44,7 +44,7 @@ describe("Secret Row", () => {
   it("should render properly", () => {
     const { getByText } = render(<SecretRow secret={sampleSecret} />);
     expect(getByText("My secret name")).toBeInTheDocument();
-    expect(getByText("December 31, 2019, 4:00:00 PM PST")).toBeInTheDocument();
+    expect(getByText("January 1, 2020, 12:00:00 AM UTC")).toBeInTheDocument();
   });
 
   it("should display all action buttons", () => {
