@@ -26,7 +26,7 @@ export function CreateNewSecret({ setUpdateSecrets }) {
       ).then((res) => {
         setSecretName("");
         setSecretValue("");
-        console.log(res);
+        console.log("Response when creating", res);
         setUpdateSecrets(true);
       });
     } else {

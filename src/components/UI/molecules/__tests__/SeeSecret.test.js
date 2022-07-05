@@ -12,6 +12,15 @@ const sampleSecret = {
   timeCreated: "2020-01-01T00:00:00.000Z",
 };
 
+const sampleSharedSecret = {
+  name: "My secret name",
+  data: "My secret value",
+  username: "admin",
+  timeCreated: "2020-01-01T00:00:00.000Z",
+  parentId: 2,
+  owner: "testuser",
+};
+
 describe("See Secret Button", () => {
   it("should render properly", () => {
     render(<SeeSecret smallScreen={false} secret={sampleSecret} />);
@@ -43,5 +52,14 @@ describe("See Secret Button", () => {
     const button = getByText("See");
     button.click();
     expect(document.body).toHaveTextContent("My secret value");
+  });
+
+  it("should show who it was shared by if secret is not owned by user", () => {
+    const { getByText } = render(
+      <SeeSecret smallScreen={false} secret={sampleSharedSecret} />
+    );
+    const button = getByText("See");
+    button.click();
+    expect(document.body).toHaveTextContent("Shared with you by testuser");
   });
 });

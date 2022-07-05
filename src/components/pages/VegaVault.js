@@ -6,7 +6,6 @@ import {
 import SimplePageLayout from "../templates/SimplePageLayout";
 import { UserContext } from "../../auth/UserProvider.js";
 import { useContext, useEffect, useState } from "react";
-import { SecretCard } from "../UI/atoms/SecretCard";
 import { Button, ListGroup, Stack, Form } from "react-bootstrap";
 import { NewSecretModal } from "../UI/molecules/NewSecretModal";
 import { MdEdit, MdDelete } from "react-icons/md";

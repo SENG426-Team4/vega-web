@@ -7,7 +7,7 @@ import { ShareSecret } from "../molecules/ShareSecret";
 
 export default function SecretRow({ secret, setUpdateSecrets }) {
   const [smallScreen, setSmallScreen] = useState(
-    window.matchMedia("(max-width: 768px)").matches
+    window !== undefined && window.matchMedia("(max-width: 768px)").matches
   );
   useEffect(() => {
     window.matchMedia("(max-width: 768px)").addEventListener("change", (e) => {
