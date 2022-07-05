@@ -1,5 +1,7 @@
-import fetch from "node-fetch";
-import Promise from "promise";
+import fetch from 'node-fetch';
+import Promise from 'promise';
+import FormData from 'form-data';
+=======
 
 export async function doPut(url, data, token) {
   var requestOptions = createRequestOptions("PUT", data, token);
@@ -38,17 +40,19 @@ export async function doPostFile(url, data, headers) {
   return await handleResponse(response);
 }
 
-function createRequestOptionsForFile(method, data, headers) {
-  //console.log(headers);
+function createRequestOptionsForFile(method, data, headers){
+  var helper = new FormData();
+  helper.append("file", data.file.data, data.file.name);
+
+  console.log(headers);
   var requestOptions = {
-    method: method,
-    headers: {
-      "Content-Type": undefined,
-      Authorization: headers["authorization"],
+    'method': method,
+    'headers': {
+      'Authorization': headers['authorization']
     },
-    formData: data,
-  };
-  //console.log(requestOptions);
+    'body': helper
+    }
+    console.log(requestOptions)
   return requestOptions;
 }
 
