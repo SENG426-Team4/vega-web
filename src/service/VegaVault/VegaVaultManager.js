@@ -3,7 +3,9 @@ import { doPost, doGet, doPut, doDelete } from "../BaseAPI.js";
 export function secretCreator(secretInfo, token) {
   console.log("Secret Creator", secretInfo, token);
   return doPost(
-    `http://localhost:8000/api/venus/vault/${secretInfo.userId}/create`,
+    `${
+      process.env.REACT_APP_API_KEY || "http://localhost:8000/"
+    }api/venus/vault/${secretInfo.userId}/create`,
     {
       username: secretInfo.userId,
       name: secretInfo.secretName,
@@ -16,20 +18,24 @@ export function secretCreator(secretInfo, token) {
 
 export function secretReader(userId, token) {
   console.log("fetchFiles", token);
-  return doGet(`http://localhost:8000/api/venus/vault/${userId}/read`, token);
+  return doGet(`${
+      process.env.REACT_APP_API_KEY || "http://localhost:8000/"
+    }api/venus/vault/${userId}/read`, token);
 }
 
 export function secretReaderFiltered(userId, fromDate, toDate, token) {
   console.log("Secret Reader Filtered", fromDate, toDate);
   return doGet(
-    `http://localhost:8000/api/venus/vault/${userId}/read?from=${fromDate}&to=${toDate}`,
+    `${process.env.REACT_APP_API_KEY || "http://localhost:8000/"}api/venus/vault/${userId}/read?from=${fromDate}&to=${toDate}`,
     token
   );
 }
 
 export function secretUpdate(newSecretInfo, token) {
   return doPut(
-    `http://localhost:8000/api/venus/vault/${newSecretInfo.username}/update`,
+    `${
+      process.env.REACT_APP_API_KEY || "http://localhost:8000/"
+    }api/venus/vault/${newSecretInfo.username}/update`,
     newSecretInfo,
     token
   );
@@ -38,7 +44,9 @@ export function secretUpdate(newSecretInfo, token) {
 export function secretDelete(secret, token) {
   console.log("LET;s go secretdelete", secret);
   return doDelete(
-    `http://localhost:8000/api/venus/vault/${secret.username}/delete`,
+    `${
+      process.env.REACT_APP_API_KEY || "http://localhost:8000/"
+    }api/venus/vault/${secret.username}/delete`,
     secret,
     token
   );
@@ -47,7 +55,7 @@ export function secretDelete(secret, token) {
 export function secretShare(secretShareInfo, token) {
   console.log("Secret Share", secretShareInfo);
   return doPut(
-    `http://localhost:8000/api/venus/vault/${secretShareInfo.username}/share`,
+    `${process.env.REACT_APP_API_KEY || "http://localhost:8000/"}api/venus/vault/${secretShareInfo.username}/share`,
     secretShareInfo,
     token
   );
